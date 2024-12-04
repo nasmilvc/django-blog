@@ -2,7 +2,6 @@ from django.contrib import admin
 
 from blogging.models import Post, Category
 
-
 # create an InlineModelAdmin to represent Categories on the Post admin view.
 class CategoryInline(admin.TabularInline):
     model = Category.posts.through  # through attribute is a reference to model that manages the many-to-many relation
