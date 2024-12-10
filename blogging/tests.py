@@ -60,7 +60,6 @@ class FrontEndTestCase(TestCase):
         for count in range(1, 11):
             title = f"Post {count} Title"
             post = Post.objects.get(title=title)
-            print("post", post.pk)
             resp = self.client.get("/blogging/posts/%d/" % post.pk)
             if count < 6:
                 self.assertEqual(resp.status_code, 200)
