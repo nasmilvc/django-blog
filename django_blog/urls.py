@@ -18,8 +18,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.urls.conf import include
+from rest_framework import routers
+from blogging.views import UserViewSet, PostViewSet, CategoryViewSet
 
 from django.contrib.auth.views import LoginView, LogoutView
+
+router = routers.DefaultRouter()
+router.register(r"users", UserViewSet)
+router.register(r"posts", PostViewSet)
+router.register(r"categories", CategoryViewSet)
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -32,4 +39,6 @@ urlpatterns = [
         name="login",
     ),
     path("logout/", LogoutView.as_view(next_page="/"), name="logout"),
+    path("api/", include(router.urls)),
+    path("api-auth/", include("rest_framework.urls", namespace="rest_framework")),
 ]
