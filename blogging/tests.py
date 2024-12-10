@@ -6,7 +6,9 @@ from blogging.models import Post, Category
 
 
 class PostTestCase(TestCase):
-    fixtures = ['blogging_test_fixture.json', ]
+    fixtures = [
+        "blogging_test_fixture.json",
+    ]
 
     def setUp(self):
         self.user = User.objects.get(pk=1)
@@ -27,7 +29,9 @@ class CategoryTestCase(TestCase):
 
 
 class FrontEndTestCase(TestCase):
-    fixtures = ['blogging_test_fixture.json', ]
+    fixtures = [
+        "blogging_test_fixture.json",
+    ]
 
     def setUp(self):
         self.now = datetime.datetime.now()
@@ -41,7 +45,7 @@ class FrontEndTestCase(TestCase):
             post.save()
 
     def test_list_only_published(self):
-        resp = self.client.get('/blogging/')
+        resp = self.client.get("/blogging/")
         resp_text = resp.content.decode(resp.charset)
         self.assertTrue("Recent Posts" in resp_text)
         for count in range(1, 11):
@@ -55,7 +59,7 @@ class FrontEndTestCase(TestCase):
         for count in range(1, 11):
             title = f"Post {count} Title"
             post = Post.objects.get(title=title)
-            resp = self.client.get('/blogging/posts/%d/' % post.pk)
+            resp = self.client.get("/blogging/posts/%d/" % post.pk)
             if count < 6:
                 self.assertEqual(resp.status_code, 200)
                 self.assertContains(resp, title)
