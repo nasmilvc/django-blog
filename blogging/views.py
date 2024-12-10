@@ -34,26 +34,32 @@ class PostDetailView(DetailView):
     model = Post
     template_name = "blogging/detail.html"
 
+
 class UserViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows users to be viewed or edited.
     """
-    queryset = User.objects.all().order_by('-username')
+
+    queryset = User.objects.all().order_by("-username")
     serializer_class = UserSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
 
 class PostViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows posts to be viewed or edited.
     """
-    queryset = Post.objects.all().order_by('title')
+
+    queryset = Post.objects.all().order_by("title")
     serializer_class = PostSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
 
 class CategoryViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows categories to be viewed or edited.
     """
-    queryset = Category.objects.all().order_by('name')
+
+    queryset = Category.objects.all().order_by("name")
     serializer_class = CategorySerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]

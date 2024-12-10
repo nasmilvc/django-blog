@@ -24,9 +24,9 @@ from blogging.views import UserViewSet, PostViewSet, CategoryViewSet
 from django.contrib.auth.views import LoginView, LogoutView
 
 router = routers.DefaultRouter()
-router.register(r'users', UserViewSet)
-router.register(r'posts', PostViewSet)
-router.register(r'categories', CategoryViewSet)
+router.register(r"users", UserViewSet)
+router.register(r"posts", PostViewSet)
+router.register(r"categories", CategoryViewSet)
 
 urlpatterns = [
     path("admin/", admin.site.urls),
